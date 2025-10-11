@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@casl/ability": "^6.7.3",
+    "@casl/vue": "^2.2.2",
+    "@nuxtjs/auth-next": "^5.0.0-1667386184.dfbbb54",
+    "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "netlify-cli": "^23.9.1"
+  }
+}

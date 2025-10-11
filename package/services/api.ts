@@ -29,7 +29,7 @@ const getApiBaseUrl = () => {
   
   // Fallback basato sull'ambiente
   return process.env.NODE_ENV === 'production'
-    ? 'https://api.mercatoitinerante.it'
+    ? 'https://www.mercatoitinerante.it/wp-json/mi_plugin/v1'
     : '/api/wp';
 };
 
@@ -160,43 +160,50 @@ export const api = {
 
   // API per dashboard amministrativa
 
-  // Ordini mensili
+  // Dashboard data functions - Simulazioni temporanee
   getMonthlyOrders: async (month: string, year: string) => {
     try {
-      // Prova a usare un endpoint specifico se esiste
-      // Se non esiste, usa i prodotti per simulare
-      const products = await api.getProducts({ limit: 100 });
+      // Usa il proxy per chiamare l'API reale
+      const response = await $fetch('/api/products', {
+        params: {
+          limit: 100,
+          month: month,
+          year: year
+        }
+      });
       
-      // Genera dati mock basati sui prodotti reali
-      const mockOrders = products.slice(0, 20).map((product: any, index: number) => ({
-        id: 1000 + index,
-        status: ['Completato', 'In elaborazione', 'Spedito', 'Annullato'][Math.floor(Math.random() * 4)],
-        creationDate: `${year}-${month.padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')} ${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}:00`,
-        client: `Cliente ${index + 1}`,
-        email: `cliente${index + 1}@example.com`,
-        total: parseFloat((Math.random() * 200 + 20).toFixed(2)),
-        paid: Math.random() > 0.2,
+      // Se la chiamata API reale fallisce, usa i dati simulati
+      if (!response || !response.data) {
+        throw new Error('Nessun dato ricevuto dall\'API');
+      }
+      
+      // Trasforma i dati dei prodotti in ordini (logica temporanea)
+      const orders = response.data.slice(0, 20).map((product: any, index: number) => ({
+        id: index + 1,
+        status: ['Completato', 'In elaborazione', 'Spedito', 'Consegnato'][Math.floor(Math.random() * 4)],
+        creationDate: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString('it-IT'),
+        client: product.name || `Cliente ${index + 1}`,
+        email: `cliente${index + 1}@email.com`,
+        total: parseFloat((Math.random() * 200 + 50).toFixed(2)),
         payment: ['Carta di Credito', 'PayPal', 'Bonifico', 'Contanti'][Math.floor(Math.random() * 4)],
-        market: product.store_name || 'Mercato Centrale'
+        market: 'Mercato Centrale'
       }));
-
+      
       return {
-        orders: mockOrders,
+        orders: orders,
         lastUpdate: new Date().toLocaleString('it-IT')
       };
     } catch (error) {
-      console.error('Errore nel recupero degli ordini mensili:', error);
-      
-      // Fallback a dati completamente mock
+      console.error('Errore API, uso dati simulati:', error);
+      // Fallback ai dati simulati
       return {
-        orders: Array.from({ length: 10 }, (_, i) => ({
-          id: 1000 + i,
-          status: ['Completato', 'In elaborazione', 'Spedito'][Math.floor(Math.random() * 3)],
-          creationDate: `${year}-${month.padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')} 10:30:00`,
+        orders: Array.from({ length: 20 }, (_, i) => ({
+          id: i + 1,
+          status: ['Completato', 'In elaborazione', 'Spedito', 'Consegnato'][Math.floor(Math.random() * 4)],
+          creationDate: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString('it-IT'),
           client: `Cliente ${i + 1}`,
-          email: `cliente${i + 1}@example.com`,
-          total: parseFloat((Math.random() * 200 + 20).toFixed(2)),
-          paid: Math.random() > 0.2,
+          email: `cliente${i + 1}@email.com`,
+          total: parseFloat((Math.random() * 200 + 50).toFixed(2)),
           payment: ['Carta di Credito', 'PayPal', 'Bonifico', 'Contanti'][Math.floor(Math.random() * 4)],
           market: 'Mercato Centrale'
         })),

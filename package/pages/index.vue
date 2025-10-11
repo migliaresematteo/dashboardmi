@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import SalesOverview from '@/components/dashboard/SalesOverview.vue';
-import YearlyBreakup from '@/components/dashboard/YearlyBreakup.vue';
-import MonthlyEarning from '@/components/dashboard/MonthlyEarnings.vue';
 import MonthlyOrders from '@/components/dashboard/MonthlyOrders.vue';
 import RiderDeliveries from '@/components/dashboard/RiderDeliveries.vue';
 import PostalCodeDeliveries from '@/components/dashboard/PostalCodeDeliveries.vue';
@@ -14,18 +11,6 @@ import EnvironmentalImpact from '@/components/dashboard/EnvironmentalImpact.vue'
   <v-card class="bg-transparent" elevation="0">
     <v-card-text class="pa-1">
       <h1 class="text-h4 font-weight-medium mb-5">Dashboard Mercato Itinerante - Amministrativa</h1>
-      
-      <v-row>
-        <v-col cols="12" sm="6" lg="4">
-          <YearlyBreakup />
-        </v-col>
-        <v-col cols="12" sm="6" lg="4">
-          <MonthlyEarning />
-        </v-col>
-        <v-col cols="12" sm="12" lg="4">
-          <SalesOverview />
-        </v-col>
-      </v-row>
       
       <v-row>
         <v-col cols="12" lg="12">

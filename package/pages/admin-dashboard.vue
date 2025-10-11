@@ -15,23 +15,6 @@ import MonthlyOrders from '@/components/dashboard/MonthlyOrders.vue';
         <MonthlyOrders />
       </v-col>
     </v-row>
-    
-    <!-- Placeholder for future components -->
-    <v-row>
-      <v-col cols="12" class="text-center mt-6">
-        <p class="text-body-1">
-          Altre sezioni in fase di implementazione:
-        </p>
-        <v-chip-group>
-          <v-chip color="primary" variant="outlined">Consegna per Rider</v-chip>
-          <v-chip color="primary" variant="outlined">Consegna per CAP</v-chip>
-          <v-chip color="primary" variant="outlined">Tipologia di Pagamento</v-chip>
-          <v-chip color="primary" variant="outlined">Ordini B2B</v-chip>
-          <v-chip color="primary" variant="outlined">Tabelle Impatto</v-chip>
-          <v-chip color="primary" variant="outlined">Dashboard Venditore</v-chip>
-        </v-chip-group>
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 

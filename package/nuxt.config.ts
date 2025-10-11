@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     server: {
       proxy: {
         '/api/wp': {
-          target: 'https://api.mercatoitinerante.it',
+          target: 'https://www.mercatoitinerante.it',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api\/wp/, '/wp-json/mi_plugin/v1'),
           secure: false,
@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     serveStatic: true,
     devProxy: {
       '/api/wp': {
-        target: 'https://api.mercatoitinerante.it/wp-json/mi_plugin/v1',
+        target: 'https://www.mercatoitinerante.it/wp-json/mi_plugin/v1',
         changeOrigin: true,
         prependPath: false,
       }
@@ -40,7 +40,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBaseUrl: process.env.NODE_ENV === 'production' 
-        ? 'https://api.mercatoitinerante.it/wp-json/mi_plugin/v1'
+        ? 'https://www.mercatoitinerante.it/wp-json/mi_plugin/v1'
         : '/api/wp'
     }
   },

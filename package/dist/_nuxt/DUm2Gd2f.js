@@ -1,0 +1,1 @@
+import{_ as n,r as t,c as a,o as c,w as _,a as s,K as r}from"./BRxAjNlp.js";const p={};function l(f,m){const e=r,o=t("v-app");return c(),a(o,null,{default:_(()=>[s(e)]),_:1})}const x=n(p,[["render",l]]);export{x as default};
