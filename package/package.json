@@ -11,13 +11,23 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "3.16.2"
+    "nuxt": "3.16.2",
+    "prisma": "^6.16.3"
   },
   "dependencies": {
+    "@casl/ability": "^6.7.3",
+    "@casl/prisma": "^1.5.2",
+    "@casl/vue": "^2.2.2",
+    "@iconify/vue": "^4.1.1",
     "@mdi/font": "7.4.47",
     "@nuxt/vite-builder": "3.16.2",
+    "@nuxtjs/auth-next": "^5.0.0-1667386184.dfbbb54",
+    "@prisma/client": "^6.16.3",
+    "@types/bcrypt": "^6.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
     "apexcharts": "4.5.0",
-    "@iconify/vue": "^4.1.1",
+    "bcrypt": "^6.0.0",
+    "jsonwebtoken": "^9.0.2",
     "sass": "1.70.0",
     "vue": "3.5.13",
     "vue-tabler-icons": "2.21.0",

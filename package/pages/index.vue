@@ -1,45 +1,93 @@
 <script setup lang="ts">
-/*Call Components*/
- import SalesOverview from '@/components/dashboard/SalesOverview.vue';
+import SalesOverview from '@/components/dashboard/SalesOverview.vue';
 import YearlyBreakup from '@/components/dashboard/YearlyBreakup.vue';
 import MonthlyEarning from '@/components/dashboard/MonthlyEarnings.vue';
-import RecentTransaction from '@/components/dashboard/RecentTransaction.vue';
-import ProductPerformance from '@/components/dashboard/ProductPerformance.vue';
-import ProductCards from '@/components/dashboard/ProductCards.vue';
+import MonthlyOrders from '@/components/dashboard/MonthlyOrders.vue';
+import RiderDeliveries from '@/components/dashboard/RiderDeliveries.vue';
+import PostalCodeDeliveries from '@/components/dashboard/PostalCodeDeliveries.vue';
+import PaymentTypes from '@/components/dashboard/PaymentTypes.vue';
+import B2BOrders from '@/components/dashboard/B2BOrders.vue';
+import EnvironmentalImpact from '@/components/dashboard/EnvironmentalImpact.vue';
 </script>
+
 <template>
-    <v-row>
+  <v-card class="bg-transparent" elevation="0">
+    <v-card-text class="pa-1">
+      <h1 class="text-h4 font-weight-medium mb-5">Dashboard Mercato Itinerante - Amministrativa</h1>
+      
+      <v-row>
+        <v-col cols="12" sm="6" lg="4">
+          <YearlyBreakup />
+        </v-col>
+        <v-col cols="12" sm="6" lg="4">
+          <MonthlyEarning />
+        </v-col>
+        <v-col cols="12" sm="12" lg="4">
+          <SalesOverview />
+        </v-col>
+      </v-row>
+      
+      <v-row>
+        <v-col cols="12" lg="12">
+          <MonthlyOrders />
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col cols="12" lg="12">
+          <RiderDeliveries />
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col cols="12" lg="12">
+          <PostalCodeDeliveries />
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col cols="12" lg="12">
+          <PaymentTypes />
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col cols="12" lg="12">
+          <B2BOrders />
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col cols="12" lg="12">
+          <EnvironmentalImpact />
+        </v-col>
+      </v-row>
+
+      <!-- Placeholder per le altre sezioni -->
+      <v-row>
         <v-col cols="12">
-            <v-row>
-                <!-- Sales overview -->
-                <v-col cols="12" lg="8">
-                    <SalesOverview />
-                </v-col>
-                <!-- Yearly Breakup / Monthly Earnings -->
-                <v-col cols="12" lg="4">
-                    <div class="mb-6">
-                        <YearlyBreakup />
-                    </div>
-                    <div>
-                        <MonthlyEarning />
-                    </div>
-                </v-col>
-                <!-- Recent transaction -->
-                <v-col cols="12" lg="4">
-                    <RecentTransaction />
-                </v-col>
-                <!-- Product performence -->
-                <v-col cols="12" lg="8">
-                    <ProductPerformance />
-                </v-col>
-                <!-- Product Cards -->
-                <v-col cols="12">
-                    <ProductCards />
-                </v-col>
-            </v-row>
+          <v-card class="pa-5">
+            <v-card-text class="text-center">
+              <h3 class="text-h5 mb-2">Sezioni da implementare:</h3>
+              <ul class="text-left">
+                <li>Dashboard Venditore</li>
+              </ul>
+            </v-card-text>
+          </v-card>
         </v-col>
+      </v-row>
+      
+      <v-row>
         <v-col class="text-center mt-2">
-            <p class="text-muted">Design and Developed by <a flat variant="text" href="https://adminmart.com/" target="_blank" class="pl-1 text-primary">AdminMart.com</a></p>
+          <p class="text-muted">Mercato Itinerante - Dashboard Amministrativa</p>
         </v-col>
-    </v-row>
+      </v-row>
+    </v-card-text>
+  </v-card>
 </template>
+
+<style scoped>
+.page-wrapper {
+    padding: 24px;
+}
+</style>

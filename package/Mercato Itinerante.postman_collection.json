@@ -1,0 +1,468 @@
+{
+	"info": {
+		"_postman_id": "74ebd081-56d7-4026-bf68-382d61916512",
+		"name": "Mercato Itinerante",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12158375"
+	},
+	"item": [
+		{
+			"name": "Get stores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/wp-json/wp/v2/store",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"wp-json",
+						"wp",
+						"v2",
+						"store"
+					],
+					"query": [
+						{
+							"key": "_fields",
+							"value": "id,slug,title,meta",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get stores categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/wp-json/wp/v2/store_category?parent=0&per_page=100",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"wp-json",
+						"wp",
+						"v2",
+						"store_category"
+					],
+					"query": [
+						{
+							"key": "parent",
+							"value": "0"
+						},
+						{
+							"key": "per_page",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get franchising",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/wp-json/mi_plugin/v1/franchisings",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"wp-json",
+						"mi_plugin",
+						"v1",
+						"franchisings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Venditori Mercato",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/wp-json/mi_plugin/v1/get-vendors?store=23&slug=pasta-fresca-drogo",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"wp-json",
+						"mi_plugin",
+						"v1",
+						"get-vendors"
+					],
+					"query": [
+						{
+							"key": "store",
+							"value": "23"
+						},
+						{
+							"key": "limit",
+							"value": "-1",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "orderby",
+							"value": "name",
+							"disabled": true
+						},
+						{
+							"key": "store_category",
+							"value": "37766",
+							"disabled": true
+						},
+						{
+							"key": "slug",
+							"value": "pasta-fresca-drogo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Prodotti Mercato",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/wp-json/mi_plugin/v1/get-products",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"wp-json",
+						"mi_plugin",
+						"v1",
+						"get-products"
+					],
+					"query": [
+						{
+							"key": "s",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "store",
+							"value": "23",
+							"disabled": true
+						},
+						{
+							"key": "vendors",
+							"value": "1264,1701",
+							"disabled": true
+						},
+						{
+							"key": "categories",
+							"value": "fruttivendoli-contadini",
+							"disabled": true
+						},
+						{
+							"key": "shipping_days",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "user_roles",
+							"value": "att_commerciale",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "50",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "stock_status",
+							"value": "instock",
+							"disabled": true
+						},
+						{
+							"key": "type",
+							"value": "variable",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Spedizioni",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/wp-json/mi_plugin/v1/get-shippings?store=23&cap=10121",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"wp-json",
+						"mi_plugin",
+						"v1",
+						"get-shippings"
+					],
+					"query": [
+						{
+							"key": "store",
+							"value": "23"
+						},
+						{
+							"key": "cap",
+							"value": "10121"
+						},
+						{
+							"key": "amount",
+							"value": "0",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate CAP",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/wp-json/mi_plugin/v1/validate-cap?cap=10125",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"wp-json",
+						"mi_plugin",
+						"v1",
+						"validate-cap"
+					],
+					"query": [
+						{
+							"key": "cap",
+							"value": "10125"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"\",\n    \"password\": \"\",\n    \"googleToken\": \"\",\n    \"token\": \"\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/wp-json/df_theme/v1/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"wp-json",
+						"df_theme",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"referral\": 0, // user_id\n    \"registrationType\": \"client\", // client, gruppo_acquisto, business\n    \"email\": \"\",\n    \"password\": \"\",\n    \"confirm_password\": \"\",\n    \"privacy\": 1,\n    \"privacy_mkt\": 1,\n    \"meta\": [],\n    \"googleToken\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/wp-json/df_theme/v1/login?email&googleToken&password&confirm_password&privacy&privacy_mkt&referral&registrationType&meta",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"wp-json",
+						"df_theme",
+						"v1",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": null
+						},
+						{
+							"key": "googleToken",
+							"value": null
+						},
+						{
+							"key": "password",
+							"value": null
+						},
+						{
+							"key": "confirm_password",
+							"value": null
+						},
+						{
+							"key": "privacy",
+							"value": null
+						},
+						{
+							"key": "privacy_mkt",
+							"value": null
+						},
+						{
+							"key": "referral",
+							"value": null
+						},
+						{
+							"key": "registrationType",
+							"value": null
+						},
+						{
+							"key": "meta",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guadagni Venditore",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/wp-json/mi_plugin/v1/vendor-earnings?token=&start=YYYY-MM-DD&end=YYYY-MM-DD&order_status=wc-completed&vendor_id",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"wp-json",
+						"mi_plugin",
+						"v1",
+						"vendor-earnings"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": ""
+						},
+						{
+							"key": "start",
+							"value": "YYYY-MM-DD"
+						},
+						{
+							"key": "end",
+							"value": "YYYY-MM-DD"
+						},
+						{
+							"key": "order_status",
+							"value": "wc-completed"
+						},
+						{
+							"key": "vendor_id",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "x-api-key",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}

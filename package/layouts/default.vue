@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Topbar from "~/components/layout/full/Topbar.vue";
 
 const title = ref(
   "Modernize - Nuxt3 Typescript based Free Admin Dashboard Template"
@@ -16,7 +15,6 @@ useHead({
 
 <template>
   <v-locale-provider>
-    <Topbar />
     <v-app>
       <LayoutFullMain />
       <v-main>
