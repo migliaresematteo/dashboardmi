@@ -22,8 +22,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     },
   });
   nuxtApp.vueApp.use(vuetify);
-  nuxtApp.vueApp.use(PerfectScrollbar);
-  nuxtApp.vueApp.use(VueApexCharts);
-  nuxtApp.vueApp.use(VueTablerIcons);
+  if (process.client) {
+    nuxtApp.vueApp.use(PerfectScrollbar);
+    nuxtApp.vueApp.use(VueApexCharts);
+    nuxtApp.vueApp.use(VueTablerIcons);
+  }
 });
 

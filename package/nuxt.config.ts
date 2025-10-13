@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
 
   typescript: {
     shim: false
@@ -8,6 +8,10 @@ export default defineNuxtConfig({
 
   build: {
     transpile: ["vuetify"],
+  },
+
+  features: {
+    inlineStyles: false,
   },
 
   vite: {
@@ -27,14 +31,13 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: [
+        '/',
+      ]
+    },
     serveStatic: true,
-    devProxy: {
-      '/api/wp': {
-        target: 'https://www.mercatoitinerante.it/wp-json/mi_plugin/v1',
-        changeOrigin: true,
-        prependPath: false,
-      }
-    }
   },
 
   runtimeConfig: {

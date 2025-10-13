@@ -24,13 +24,19 @@ const search = ref(''); // Aggiunto per la funzionalità di ricerca
 const errorMessage = ref('');
 
 // 3. Gestione di data e anno
-const currentYear = new Date().getFullYear();
-const selectedMonth = ref(new Date().getMonth());
-const selectedYear = ref(currentYear);
+const selectedMonth = ref(0);
+const selectedYear = ref(0);
+const months = ref<{ title: string; value: number; }[]>([]);
+const years = ref<number[]>([]);
 
-// Genera dinamicamente la lista dei mesi e degli anni per i selettori
-const months = Array.from({ length: 12 }, (_, i) => ({ title: new Date(0, i).toLocaleString('it-IT', { month: 'long' }), value: i }));
-const years = Array.from({ length: 10 }, (_, i) => currentYear - 5 + i);
+onMounted(() => {
+  const currentYear = new Date().getFullYear();
+  selectedMonth.value = new Date().getMonth();
+  selectedYear.value = currentYear;
+  months.value = Array.from({ length: 12 }, (_, i) => ({ title: new Date(0, i).toLocaleString('it-IT', { month: 'long' }), value: i }));
+  years.value = Array.from({ length: 10 }, (_, i) => currentYear - 5 + i);
+  loadOrders();
+});
 
 // 4. Headers per v-data-table (più dichiarativo e pulito)
 // Le classi per la responsività sono definite qui

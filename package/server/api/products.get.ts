@@ -1,7 +1,6 @@
 import { defineEventHandler, getQuery, createError } from 'h3'
 
 export default defineEventHandler(async (event) => {
-  // Ottieni i parametri dalla query
   const query = getQuery(event)
   const limit = query.limit || 100
   const store = query.store
@@ -11,14 +10,11 @@ export default defineEventHandler(async (event) => {
   const user_roles = query.user_roles
   const s = query.s // search term
   
-  // URL base per l'API di Mercato Itinerante
   const baseUrl = 'https://www.mercatoitinerante.it'
   
-  // Ottieni l'API key dalle variabili d'ambiente
   const apiKey = process.env.NUXT_API_KEY || ''
   
   try {
-    // Prepara i parametri per la chiamata API
     const params: Record<string, any> = {}
     if (limit) params.limit = limit
     if (store) params.store = store
@@ -28,13 +24,11 @@ export default defineEventHandler(async (event) => {
     if (user_roles) params.user_roles = user_roles
     if (s) params.s = s
     
-    // Prepara gli headers
     const headers: Record<string, string> = {}
     if (apiKey) {
       headers['x-api-key'] = apiKey
     }
     
-    // Effettua la chiamata all'API esterna
     const products = await $fetch(`${baseUrl}/wp-json/mi_plugin/v1/get-products`, {
       params,
       headers

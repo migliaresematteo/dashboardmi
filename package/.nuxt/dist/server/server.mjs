@@ -1,6 +1,1 @@
-const entrySpa = () => {
-};
-export {
-  entrySpa as default
-};
-//# sourceMappingURL=server.mjs.map
+export { default } from "file:///C:/Users/matte/OneDrive/Desktop/mi-dashboardamm/Modernize-nuxtjs-free/package/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"

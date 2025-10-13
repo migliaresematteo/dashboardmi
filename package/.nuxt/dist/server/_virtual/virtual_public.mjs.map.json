@@ -1,0 +1,1 @@
+{"file":"virtual_public.mjs","mappings":";AAAuD,MAAe,aAAA,gBAAgB,iCAAiC;","names":[],"sources":["../../../../virtual:public?%2Fimages%2Fbackground%2Ferrorimg.svg"],"sourcesContent":["import { publicAssetsURL } from '#internal/nuxt/paths';export default publicAssetsURL(\"/images/background/errorimg.svg\")"],"version":3}
