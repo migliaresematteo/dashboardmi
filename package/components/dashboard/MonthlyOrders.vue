@@ -98,7 +98,6 @@ const refreshData = () => loadOrders();
 
 // 8. Watchers e Lifecycle Hooks
 watch([selectedMonth, selectedYear], loadOrders);
-onMounted(loadOrders);
 </script>
 
 <template>
