@@ -1,2 +1,2 @@
+/wp-json/* https://www.mercatoitinerante.it/wp-json/:splat 200
 /* /index.html 200
-/api/wp/* https://www.mercatoitinerante.it/wp-json/mi_plugin/v1/:splat 200
