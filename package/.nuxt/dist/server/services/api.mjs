@@ -15,7 +15,7 @@ const getApiBaseUrl = () => {
     return config.public.apiBaseUrl || "";
   } catch (e) {
   }
-  return process.env.NODE_ENV === "production" ? "https://www.mercatoitinerante.it/wp-json/mi_plugin/v1" : "/api/wp";
+  return process.env.NODE_ENV === "production" ? "https://www.mercatoitinerante.it" : "";
 };
 const getApiKey = () => {
   if (API_KEY.value) {

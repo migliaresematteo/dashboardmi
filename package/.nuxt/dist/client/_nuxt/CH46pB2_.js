@@ -1,1 +1,0 @@
-import{_ as o,c as t,e as c,f as _,i as a,j as s,N as r}from"./CCcdX0hl.js";const p={};function f(l,m){const e=r,n=t("v-app");return _(),c(n,null,{default:a(()=>[s(e)]),_:1})}const x=o(p,[["render",f]]);export{x as default};
