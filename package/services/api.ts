@@ -101,7 +101,7 @@ export const api = {
   
   // Prodotti
   getProducts: (params: {
-    search?: string,
+    s?: string,  // search query
     store?: number,
     vendors?: string,
     categories?: string,
