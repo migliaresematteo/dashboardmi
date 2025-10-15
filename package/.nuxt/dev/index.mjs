@@ -647,8 +647,9 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "apiBaseUrl": "/api/wp"
-  }
+    "apiBaseUrl": ""
+  },
+  "apiKey": "8f2c4e31-9b77-4f0d-8d26-4f203a8e3d7a"
 };
 const envOptions = {
   prefix: "NITRO_",

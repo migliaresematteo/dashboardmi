@@ -819,7 +819,23 @@ const getApiBaseUrl = () => {
   if (API_BASE_URL.value) {
     return API_BASE_URL.value;
   }
+  try {
+    const config = useRuntimeConfig();
+    return config.public.apiBaseUrl || "";
+  } catch (e) {
+  }
   return "/api/wp";
+};
+const getApiKey = () => {
+  if (API_KEY.value) {
+    return API_KEY.value;
+  }
+  try {
+    const config = useRuntimeConfig();
+    return config.apiKey || "";
+  } catch (e) {
+    return "";
+  }
 };
 const fetchApi = async (endpoint, options = {}) => {
   try {
@@ -829,8 +845,9 @@ const fetchApi = async (endpoint, options = {}) => {
       "Content-Type": "application/json",
       ...options.headers || {}
     };
-    if (API_KEY.value) {
-      headers["x-api-key"] = API_KEY.value;
+    const apiKey = getApiKey();
+    if (apiKey) {
+      headers["x-api-key"] = apiKey;
     }
     const response = await fetch(url, {
       ...options,
@@ -895,13 +912,8 @@ const api = {
   // Dashboard data functions - Simulazioni temporanee
   getMonthlyOrders: async (month, year) => {
     try {
-      const response = await $fetch("/api/products", {
-        params: {
-          limit: 100,
-          month,
-          year
-        }
-      });
+      const baseUrl = getApiBaseUrl();
+      const response = await fetchApi(`/get-products?limit=100&month=${month}&year=${year}`);
       if (!response || !response.data) {
         throw new Error("Nessun dato ricevuto dall'API");
       }
@@ -1081,7 +1093,7 @@ const api = {
 };
 
 const api_config_FBksLW_sMj9ylOYcaFjxMkdnzbYZuP_QkjbhK_7G7jU = defineNuxtPlugin((nuxtApp) => {
-  const apiBaseUrl = process.env.NUXT_API_BASE_URL || "https://api.mercatoitinerante.it";
+  const apiBaseUrl = process.env.NUXT_API_BASE_URL || "https://www.mercatoitinerante.it";
   const apiKey = process.env.NUXT_API_KEY || "";
   setApiConfig(apiBaseUrl, apiKey);
   return {
@@ -27811,7 +27823,7 @@ const PurpleTheme = {
   }
 };
 
-const vuetify_hjFy4UiBVKu2U8_BW9ggkFzfvErKr3wFgTHpa6TF5Ds = defineNuxtPlugin((nuxtApp) => {
+const vuetify_hjFy4UiBVKu2U8_BW9ggkFzfvErKr3wFgTHpa6TF5Ds = defineNuxtPlugin(async (nuxtApp) => {
   const vuetify = createVuetify({
     components: index$1,
     directives: index,

@@ -8,7 +8,7 @@ _sfc_main.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/dashboard/MonthlyOrders.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
-const MonthlyOrders = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-c0d23c00"]]);
+const MonthlyOrders = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-3f14a087"]]);
 export {
   MonthlyOrders as default
 };

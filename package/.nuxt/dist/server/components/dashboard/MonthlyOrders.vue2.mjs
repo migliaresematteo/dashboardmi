@@ -1,4 +1,4 @@
-import { defineComponent, ref, watch, resolveComponent, mergeProps, withCtx, createTextVNode, toDisplayString, unref, createVNode, createBlock, createCommentVNode, openBlock } from "vue";
+import { defineComponent, ref, watch, resolveComponent, mergeProps, withCtx, createTextVNode, toDisplayString, createVNode, createBlock, createCommentVNode, openBlock } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrRenderStyle } from "vue/server-renderer";
 import "./OrderDetailsModal.vue.mjs";
 import { api } from "../../services/api.mjs";
@@ -12,11 +12,10 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     const lastUpdate = ref("");
     const search = ref("");
     const errorMessage = ref("");
-    const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
-    const selectedMonth = ref((/* @__PURE__ */ new Date()).getMonth());
-    const selectedYear = ref(currentYear);
-    const months = Array.from({ length: 12 }, (_, i) => ({ title: new Date(0, i).toLocaleString("it-IT", { month: "long" }), value: i }));
-    const years = Array.from({ length: 10 }, (_, i) => currentYear - 5 + i);
+    const selectedMonth = ref(0);
+    const selectedYear = ref(0);
+    const months = ref([]);
+    const years = ref([]);
     const headers = [
       { title: "ID", key: "id", align: "start" },
       { title: "Stato", key: "status" },
@@ -89,7 +88,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
             _push2(ssrRenderComponent(_component_v_card_title, { class: "d-flex flex-wrap align-center pa-4" }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
-                  _push3(`<div class="me-4" data-v-c0d23c00${_scopeId2}><h5 class="text-h5" data-v-c0d23c00${_scopeId2}>Resoconto Ordini</h5>`);
+                  _push3(`<div class="me-4" data-v-3f14a087${_scopeId2}><h5 class="text-h5" data-v-3f14a087${_scopeId2}>Resoconto Ordini</h5>`);
                   _push3(ssrRenderComponent(_component_v_card_subtitle, { class: "ps-0" }, {
                     default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                       if (_push4) {
@@ -104,11 +103,11 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                   }, _parent3, _scopeId2));
                   _push3(`</div>`);
                   _push3(ssrRenderComponent(_component_v_spacer, null, null, _parent3, _scopeId2));
-                  _push3(`<div class="d-flex align-center flex-wrap gap-2" style="${ssrRenderStyle({ "width": "100%", "max-width": "600px" })}" data-v-c0d23c00${_scopeId2}>`);
+                  _push3(`<div class="d-flex align-center flex-wrap gap-2" style="${ssrRenderStyle({ "width": "100%", "max-width": "600px" })}" data-v-3f14a087${_scopeId2}>`);
                   _push3(ssrRenderComponent(_component_v_select, {
                     modelValue: selectedMonth.value,
                     "onUpdate:modelValue": ($event) => selectedMonth.value = $event,
-                    items: unref(months),
+                    items: months.value,
                     label: "Mese",
                     "hide-details": "",
                     variant: "outlined",
@@ -119,7 +118,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                   _push3(ssrRenderComponent(_component_v_select, {
                     modelValue: selectedYear.value,
                     "onUpdate:modelValue": ($event) => selectedYear.value = $event,
-                    items: unref(years),
+                    items: years.value,
                     label: "Anno",
                     "hide-details": "",
                     variant: "outlined",
@@ -358,7 +357,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                       createVNode(_component_v_select, {
                         modelValue: selectedMonth.value,
                         "onUpdate:modelValue": ($event) => selectedMonth.value = $event,
-                        items: unref(months),
+                        items: months.value,
                         label: "Mese",
                         "hide-details": "",
                         variant: "outlined",
@@ -369,7 +368,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                       createVNode(_component_v_select, {
                         modelValue: selectedYear.value,
                         "onUpdate:modelValue": ($event) => selectedYear.value = $event,
-                        items: unref(years),
+                        items: years.value,
                         label: "Anno",
                         "hide-details": "",
                         variant: "outlined",
@@ -577,7 +576,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
               }),
               "no-data": withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
-                  _push3(`<div class="pa-4 text-center" data-v-c0d23c00${_scopeId2}>Nessun ordine trovato per il periodo selezionato.</div>`);
+                  _push3(`<div class="pa-4 text-center" data-v-3f14a087${_scopeId2}>Nessun ordine trovato per il periodo selezionato.</div>`);
                 } else {
                   return [
                     createVNode("div", { class: "pa-4 text-center" }, "Nessun ordine trovato per il periodo selezionato.")
@@ -616,7 +615,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                     createVNode(_component_v_select, {
                       modelValue: selectedMonth.value,
                       "onUpdate:modelValue": ($event) => selectedMonth.value = $event,
-                      items: unref(months),
+                      items: months.value,
                       label: "Mese",
                       "hide-details": "",
                       variant: "outlined",
@@ -627,7 +626,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                     createVNode(_component_v_select, {
                       modelValue: selectedYear.value,
                       "onUpdate:modelValue": ($event) => selectedYear.value = $event,
-                      items: unref(years),
+                      items: years.value,
                       label: "Anno",
                       "hide-details": "",
                       variant: "outlined",

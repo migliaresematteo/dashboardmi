@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import "C:/Users/matte/OneDrive/Desktop/mi-dashboardamm/Modernize-nuxtjs-free/package/node_modules/hookable/dist/index.mjs";
+import { useRuntimeConfig } from "../node_modules/nuxt/dist/app/nuxt.mjs";
 const API_BASE_URL = ref("");
 const API_KEY = ref("");
 const setApiConfig = (baseUrl, apiKey) => {
@@ -10,7 +10,23 @@ const getApiBaseUrl = () => {
   if (API_BASE_URL.value) {
     return API_BASE_URL.value;
   }
+  try {
+    const config = useRuntimeConfig();
+    return config.public.apiBaseUrl || "";
+  } catch (e) {
+  }
   return process.env.NODE_ENV === "production" ? "https://www.mercatoitinerante.it/wp-json/mi_plugin/v1" : "/api/wp";
+};
+const getApiKey = () => {
+  if (API_KEY.value) {
+    return API_KEY.value;
+  }
+  try {
+    const config = useRuntimeConfig();
+    return config.apiKey || "";
+  } catch (e) {
+    return "";
+  }
 };
 const fetchApi = async (endpoint, options = {}) => {
   try {
@@ -20,8 +36,9 @@ const fetchApi = async (endpoint, options = {}) => {
       "Content-Type": "application/json",
       ...options.headers || {}
     };
-    if (API_KEY.value) {
-      headers["x-api-key"] = API_KEY.value;
+    const apiKey = getApiKey();
+    if (apiKey) {
+      headers["x-api-key"] = apiKey;
     }
     const response = await fetch(url, {
       ...options,
@@ -86,13 +103,8 @@ const api = {
   // Dashboard data functions - Simulazioni temporanee
   getMonthlyOrders: async (month, year) => {
     try {
-      const response = await $fetch("/api/products", {
-        params: {
-          limit: 100,
-          month,
-          year
-        }
-      });
+      const baseUrl = getApiBaseUrl();
+      const response = await fetchApi(`/get-products?limit=100&month=${month}&year=${year}`);
       if (!response || !response.data) {
         throw new Error("Nessun dato ricevuto dall'API");
       }

@@ -18,19 +18,33 @@ const getApiBaseUrl = () => {
   }
   
   // Usa la configurazione runtime di Nuxt se disponibile
-  if (process.client) {
-    try {
-      const config = useRuntimeConfig();
-      return config.public.apiBaseUrl || '';
-    } catch (e) {
-      // Se useRuntimeConfig non è disponibile, usa il valore di default
-    }
+  try {
+    const config = useRuntimeConfig();
+    return config.public.apiBaseUrl || '';
+  } catch (e) {
+    // Se useRuntimeConfig non è disponibile, usa il valore di default
   }
   
   // Fallback basato sull'ambiente
   return process.env.NODE_ENV === 'production'
-    ? 'https://www.mercatoitinerante.it/wp-json/mi_plugin/v1'
-    : '/api/wp';
+    ? 'https://www.mercatoitinerante.it'
+    : '';
+};
+
+// Funzione per ottenere l'API key
+const getApiKey = () => {
+  if (API_KEY.value) {
+    return API_KEY.value;
+  }
+  
+  // Usa la configurazione runtime di Nuxt se disponibile
+  try {
+    const config = useRuntimeConfig();
+    return config.apiKey || '';
+  } catch (e) {
+    // Se useRuntimeConfig non è disponibile, ritorna vuoto
+    return '';
+  }
 };
 
 // Funzione generica per le chiamate API
@@ -45,9 +59,10 @@ const fetchApi = async (endpoint: string, options: RequestInit = {}) => {
       ...(options.headers as Record<string, string> || {})
     };
     
-    // Aggiungi l'API key se necessario
-    if (API_KEY.value) {
-      headers['x-api-key'] = API_KEY.value;
+    // Aggiungi l'API key
+    const apiKey = getApiKey();
+    if (apiKey) {
+      headers['x-api-key'] = apiKey;
     }
     
     const response = await fetch(url, {
@@ -163,14 +178,9 @@ export const api = {
   // Dashboard data functions - Simulazioni temporanee
   getMonthlyOrders: async (month: string, year: string) => {
     try {
-      // Usa il proxy per chiamare l'API reale
-      const response = await $fetch('/api/products', {
-        params: {
-          limit: 100,
-          month: month,
-          year: year
-        }
-      });
+      // Usa l'URL completo di mercatoitinerante
+      const baseUrl = getApiBaseUrl();
+      const response = await fetchApi(`/get-products?limit=100&month=${month}&year=${year}`);
       
       // Se la chiamata API reale fallisce, usa i dati simulati
       if (!response || !response.data) {
